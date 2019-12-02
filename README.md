@@ -14,11 +14,11 @@ O nosso projeto consiste em uma evolução do PlanAdmMota, na opção 6, onde se
 
 ## Screenshots
 
-![Grafo modelado](https://github.com/projeto-de-algoritmos/Grafos2-PlanAdmMota/blob/master/imagens/Grafo%20vicente.jpg)
+![Grafo modelado](https://github.com/projeto-de-algoritmos/Final_PaulUber/blob/master/imagens/Grafo%20vicente.jpg)
 
-![Menu inicial](https://github.com/projeto-de-algoritmos/Grafos2-PlanAdmMota/blob/master/imagens/menu.png)
+![Menu inicial](https://github.com/projeto-de-algoritmos/Final_PaulUber/blob/master/imagens/menu.png)
 
-![Menor caminho](https://github.com/projeto-de-algoritmos/Grafos2-PlanAdmMota/blob/master/imagens/menor-caminho.png)
+![Menor caminho](https://github.com/projeto-de-algoritmos/Final_PaulUber/blob/master/imagens/menor-caminho.png)
 
 
 ## Instalação 
