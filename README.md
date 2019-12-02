@@ -1,7 +1,7 @@
 # PlanAdmMota
 
-**Número da Lista**: 2<br>
-**Conteúdo da Disciplina**: Grafos2<br>
+**Número da Lista**: 6<br>
+**Conteúdo da Disciplina**: Final<br>
 
 ## Alunos
 |Matrícula | Aluno |
@@ -10,7 +10,7 @@
 | 16/0016428  |  Paulo Victor Lopes |
 
 ## Sobre 
-O nosso projeto consiste no planejamento do melhor local para se colocar a administração( ou um hospital, delegacia, etc) que tenha a menor distância geral para qualquer ponto de Vicente Pires. Tendo o mapa de Vicente Pires em formato de grafo, o nosso projeto visa promover esse planejamento da melhor localização para a central a partir do algoritmo de Dijkstra para caminho mais curto.
+O nosso projeto consiste em uma evolução do PlanAdmMota, na opção 6, onde se escolhe a origem e o destino. Foi adicionado a funcionalidade de printar o caminho percorrido no menor peso encontrado.
 
 ## Screenshots
 
@@ -18,20 +18,18 @@ O nosso projeto consiste no planejamento do melhor local para se colocar a admin
 
 ![Menu inicial](https://github.com/projeto-de-algoritmos/Grafos2-PlanAdmMota/blob/master/imagens/menu.png)
 
-![Menor caminho](https://github.com/projeto-de-algoritmos/Grafos2-PlanAdmMota/blob/master/imagens/Menor%20caminho%20ate%20ponto.png)
-
-![Melhor ponto](https://github.com/projeto-de-algoritmos/Grafos2-PlanAdmMota/blob/master/imagens/Melhor%20ponto.png)
+![Menor caminho](https://github.com/projeto-de-algoritmos/Grafos2-PlanAdmMota/blob/master/imagens/menor-caminho.png)
 
 
 ## Instalação 
 **Linguagem**: C<br>
 Necessário realizar o comando:
   
-  gcc *.c *.h -o PlanAdmMota
+  gcc *.c *.h -o PaulUber
   
-  ./PlanAdmMota
+  ./PaulUber
 
     
 ## Uso 
-Siga as instruções no menu.
+Siga as instruções no menu. O Foco, diferente do PlanAdmMota é na opção 6.
 

@@ -7,8 +7,6 @@
 int main() {
 
     Graph *grafo = load_graph("nodes.txt", "edges.txt");
-
-    menu(grafo);
     
     int id;
     char name[50];
@@ -16,10 +14,11 @@ int main() {
     NodeData insert_node;
     EdgeData insert_edge;
     int conection;
-    int idBest,shorterTotalCost = 999,shorterActualCost;
+    int idBest, shorterTotalCost = 999, shorterActualCost;
     char option;
 
     do {
+        menu(grafo);
         option = catch_option();
 
         switch (option) {
@@ -67,7 +66,7 @@ int main() {
                 printf("Digite a origem e destino do caminho desejado: ");
                 scanf("%d %d", &id, &conection);
                 conection = dijkstra(grafo, id, conection, 1);
-                printf("%d\n", conection);
+                printf("Custo = %d\n", conection);
             break;
 
             case 7:
@@ -94,7 +93,6 @@ int main() {
                 printf("DIGITE UMA OPCAO VALIDA\n\n");
             break;
         }
-         menu(grafo);
     } while (option != 0);
 
     destroy_graph(grafo);

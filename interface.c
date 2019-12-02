@@ -4,7 +4,7 @@
 #define VISITED -1
 
 void menu(Graph *grafo) {
-	printf("\n\t\tPosiciona administração.\n");
+	printf("\n\t\tPaulUber.\n");
 	
 	Node * node;
 	for (node = grafo -> start; node != NULL; node = node -> next) {
@@ -18,7 +18,7 @@ void menu(Graph *grafo) {
 	printf("3- Retirar esquina.\n");
 	printf("4- Retirar rua.\n");
 	printf("5- Esquinas conectadas.\n");
-    printf("6- Menor caminho entre dois pontos.\n");
+    printf("6- Menor caminho entre dois pontos.***\n");
     printf("7- Melhor local para se pôr uma administração.\n");
 	printf("0- Sair do programa.\n");
 
@@ -69,17 +69,16 @@ int dijkstra(Graph *grafo, int origin, int destiny, int print) {
     int size_graph = (grafo -> n_nodes) + 1;
 
     int visited[size_graph];
+    int minimum_cost_to[size_graph][2];
     for (int i = 0; i < size_graph; i++) {
         visited[i] = 0;
-    }
-
-    int minimum_cost_to[size_graph];
-    for (int i = 1; i < size_graph; i++) {
-        if (i != origin) {
-            minimum_cost_to[i] = INFINITO;
+		
+		if (i != origin) {
+            minimum_cost_to[i][0] = INFINITO;
         } else {
-            minimum_cost_to[i] = 0;
+            minimum_cost_to[i][0] = 0;
         }
+		minimum_cost_to[i][1] = -1;
     }
 
     int id_min, min;
@@ -88,7 +87,7 @@ int dijkstra(Graph *grafo, int origin, int destiny, int print) {
             // Print the list of minimum path until now
             printf("Calculo dos menores valores atualizado\n");
             for (int i = 1; i < size_graph; i++) {
-                printf("%d: %d\n", i, minimum_cost_to[i]);
+                printf("%d: %d\n", i, minimum_cost_to[i][0]);
             }
             printf("\n");
         }
@@ -97,8 +96,8 @@ int dijkstra(Graph *grafo, int origin, int destiny, int print) {
         min = INFINITO;
         // find the minimum cost not visited until now
         for (int i = 1; i < size_graph; i++) {
-            if (minimum_cost_to[i] < min && visited[i] == 0) {
-                min = minimum_cost_to[i];
+            if (minimum_cost_to[i][0] < min && visited[i] == 0) {
+                min = minimum_cost_to[i][0];
                 id_min = i;
             }
         }
@@ -108,21 +107,22 @@ int dijkstra(Graph *grafo, int origin, int destiny, int print) {
 
         if (print) {
             printf("Menor caminho ate agora: %d\n", id_min);
-            printf("Custo atual ate %d: %d\n", id_min, minimum_cost_to[id_min]);
+            printf("Custo atual ate %d: %d\n", id_min, minimum_cost_to[id_min][0]);
         }
         // att cost to edges if smaller
         for (int i = 1; i <= neighbor[0]; i++) {
             if (visited[neighbor[i]] == 0) {
-                cost = minimum_cost_to[id_min] + return_edge_value(grafo, id_min, neighbor[i]).weight;
+                cost = minimum_cost_to[id_min][0] + return_edge_value(grafo, id_min, neighbor[i]).weight;
                 if (print) {
-                    printf("Velho custo ate %d: %d\n",neighbor[i], minimum_cost_to[neighbor[i]]);
+                    printf("Velho custo ate %d: %d\n",neighbor[i], minimum_cost_to[neighbor[i]][0]);
                     printf("Custo ate %d passando por %d: %d\n", neighbor[i], id_min, cost);
                 }
-                if (cost < minimum_cost_to[neighbor[i]]) {
-                    minimum_cost_to[neighbor[i]] = cost;
+                if (cost < minimum_cost_to[neighbor[i]][0]) {
+                    minimum_cost_to[neighbor[i]][0] = cost;
+					minimum_cost_to[neighbor[i]][1] = id_min;
                 }
                 if (print) {
-                    printf("Custo atualizado para %d: %d\n", neighbor[i], minimum_cost_to[neighbor[i]]);
+                    printf("Custo atualizado para %d: %d\n", neighbor[i], minimum_cost_to[neighbor[i]][0]);
                     printf("\n");
                 }                
             }
@@ -131,6 +131,17 @@ int dijkstra(Graph *grafo, int origin, int destiny, int print) {
         visited[id_min] = 1;
 
     } while(visited[destiny] == 0);
+	
+	if (print) {
+		int anterior = destiny;
+		NodeData content;
+		do{
+			content = return_node_value(grafo, anterior);
+			printf("%s <- ", content.name);
+			anterior = minimum_cost_to[anterior][1];
+		} while (anterior != origin);
+		printf("%s\n", content.name);
+	}
 
-    return minimum_cost_to[destiny];
+    return minimum_cost_to[destiny][0];
 };
